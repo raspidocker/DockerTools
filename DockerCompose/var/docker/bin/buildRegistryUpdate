@@ -1,0 +1,25 @@
+#!/bin/bash
+
+modul="$1"
+#rpi1:5000
+registry=""
+repo="raspidocker"
+version="latest"
+
+function out {
+	echo -e " * $@";
+}
+
+
+if [ "$modul" = "" ] || [ "$modul" = "" ]; then
+        out "Usage: $0 <modulname> (<registry>, <repository>)"
+        exit 1;
+elif [ "$2" != "" ]; then
+        registry="$2/"
+elif [ "$3" != "" ]; then
+        repo="$3"
+fi
+
+out "docker pull ${registry}${repo}/${modul}"
+docker pull ${registry}${repo}/${modul}
+
