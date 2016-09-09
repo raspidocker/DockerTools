@@ -2,11 +2,12 @@
 
 function copyfile () {
     echo "--->: cp -vf $1 $2"
-    cp -vf $1 $2
+    cp -f $1 $2
 }
 function link () {
-    if [ -e $2 ]; then
+    if [ -h $2 ]; then
         echo "--->: rm -f $2"
+        rm -f $2
     fi
     echo "--->: ln -s $1 $2"
     ln -s $1 $2
