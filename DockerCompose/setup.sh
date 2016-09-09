@@ -38,7 +38,7 @@ fi
 # Docker-Compose FIles
 ymlcount=$(ls ./var/docker/compose/*.yml|wc -l)
 if [ $ymlcount -gt 0 ];then
-    for _yml in $(ls ./var/docker/compose/$*.yml); do
+    for _yml in $(ls ./var/docker/compose/*.yml); do
         _host=$(hostname)
         if [ "${_host:0:3}" = "${_yml:0:3}" ]; then
             copyfile $_yml /var/docker/compose/
