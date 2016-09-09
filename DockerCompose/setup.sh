@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function copyfile () {
-    echo "--->: cp -vf $1 $2"
+    echo "--->: cp -f $1 $2"
     cp -f $1 $2
 }
 function link () {
