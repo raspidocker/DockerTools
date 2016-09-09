@@ -2,14 +2,14 @@
 
 function copyfile () {
     echo "--->: cp -f $1 $2"
-    if [ -f $2 ];then
+    if [ -e $2 ];then
         rm -f $2;
     fi
     cp -f $1 $2
 }
 function copyrfile () {
     echo "--->: cp -f $1 $2"
-    if [ -f $2 ];then
+    if [ -d $2 ];then
         rm -Rf $2;
     fi
     cp -Rf $1 $2
@@ -36,9 +36,12 @@ if [ $bincount -gt 0 ];then
 fi
 
 # Docker-Compose FIles
-ymlcount=$(ls ./var/docker/compose/$(hostname)-*.yml|wc -l)
+ymlcount=$(ls ./var/docker/compose/*.yml|wc -l)
 if [ $ymlcount -gt 0 ];then
-    for _yml in $(ls ./var/docker/compose/$(hostname)-*.yml); do
-        copyfile $_yml /var/docker/compose/
+    for _yml in $(ls ./var/docker/compose/$*.yml); do
+        _host=$(hostname)
+        if [ "${_host:0:3}" = "${_yml:0:3}" ]; then
+            copyfile $_yml /var/docker/compose/
+        fi
     done
 fi
