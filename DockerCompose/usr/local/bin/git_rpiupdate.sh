@@ -2,7 +2,7 @@
 
 REPO_BASE=/var/docker/build
 REPOS="DockerImages DockerTools"
-git_pass=$1
+git_pass=${1:$ENV_GITPASS}
 git_user=raspidocker
 git_url=github.com/${git_user}
 
@@ -11,7 +11,7 @@ for r in ${REPOS}; do
         if [ ! -d $REPO_L ]; then
                 echo "Clone Repo $REPO_L"
                 if [ "$git_pass" = "" ]; then
-                    git clone https://${git_url}${r}
+                    git clone https://${git_url}/${r}
                 else
                     git clone https://${git_user}:${git_pass}@${git_url}/${r}
                 fi
