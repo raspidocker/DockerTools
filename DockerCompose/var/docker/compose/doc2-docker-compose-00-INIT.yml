@@ -1,0 +1,11 @@
+registry:
+  image: raspidocker/service-registry
+  hostname: "registry"
+  container_name: "registry"
+  ports:
+   - "5000:5000"
+  volumes:
+   - "/var/lib/docker/registry/data:/var/lib/registry"
+  labels:
+   - "de.mgeo.cloud.access=private"
+   - "de.mgeo.dockerhost=doc2"
