@@ -5,7 +5,7 @@ function copyfile () {
     cp -f $1 $2
 }
 function link () {
-    if [ -h $2 ]; then
+    if [ -e $2 ]; then
         echo "--->: rm -f $2"
         rm -f $2
     fi
@@ -14,5 +14,5 @@ function link () {
 }
 echo "Copy source from local-repository to target"
 copyfile ./etc/init.d/dockercomposer /etc/init.d/dockercomposer
-link /etc/init.d/dockercomposer /usr/local/bin/
+link /etc/init.d/dockercomposer /usr/local/bin/dockercomposer
 copyfile ./var/docker/compose/$(hostname)-*.yml /var/docker/compose/
