@@ -28,7 +28,7 @@ echo "Copy source from local-repository to target"
 bincount=$(ls ./var/docker/bin/*|wc -l)
 if [ $bincount -gt 0 ];then
     for _bin in $(ls ./var/docker/bin/*); do
-        copyfile $_bin /usr/local/bin/
+        copyfile $_bin /usr/local/bin/$(basename ${_bin})
         chmod a+x /usr/local/bin/$(basename $_bin)
     done
     copyfile ./var/docker/bin/dockercomposer /etc/init.d/dockercomposer
@@ -41,7 +41,7 @@ if [ $ymlcount -gt 0 ];then
     for _yml in $(ls ./var/docker/compose/*.yml); do
         _host=$(hostname)
         if [ "${_host:0:3}" = "${_yml:0:3}" ]; then
-            copyfile $_yml /var/docker/compose/
+            copyfile ${_yml} /var/docker/compose/$(basename ${_yml})
         fi
     done
 fi
