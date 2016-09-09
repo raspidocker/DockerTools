@@ -17,7 +17,7 @@ echo "Copy source from local-repository to target"
 
 # Binary & init.d Files
 for _bin in $(ls ./var/docker/bin/*); do
-    link $_bin /usr/local/bin/$(basename $_bin)
+    copyfile $_bin /usr/local/bin/
     chmod a+x /usr/local/bin/$(basename $_bin)
 done
 copyfile ./var/docker/bin/dockercomposer /etc/init.d/dockercomposer
