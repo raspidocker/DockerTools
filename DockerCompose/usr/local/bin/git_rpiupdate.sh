@@ -10,6 +10,7 @@ for r in ${REPOS}; do
         REPO_L=${REPO_BASE}/${r}
         if [ ! -d $REPO_L ]; then
                 echo "Clone Repo $REPO_L"
+                cd ${REPO_BASE}
                 if [ "$git_pass" = "" ]; then
                     git clone https://${git_url}/${r}
                 else
